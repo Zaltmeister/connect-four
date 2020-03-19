@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import TheGame from './components/TheGame.vue'
-import { SmartCheckWinStrategy } from './services'
+import HelloWorld from './components/HelloWorld.vue';
+import TheGame from './components/TheGame.vue';
+import { SmartCheckWinStrategy } from './services';
 
 export default {
   name: 'App',
@@ -22,7 +22,7 @@ export default {
   computed: {
     SmartCheckWinStrategy: () => SmartCheckWinStrategy
   }
-}
+};
 </script>
 
 <style lang="scss">
