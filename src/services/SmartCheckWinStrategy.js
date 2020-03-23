@@ -55,7 +55,8 @@ const strategy = (cols, player, currentCol) => {
       return 1;
     }
   }
-  // todo: Tie if board is filled
+
+  //tie if board is full
   const tie = cols.reduce((acc, column) => acc && column.length === 6, true);
   if (tie) {
     return 3;

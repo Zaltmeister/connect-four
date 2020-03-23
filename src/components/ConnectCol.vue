@@ -49,6 +49,17 @@ export default {
   watch: {
     rows: function() {
       this.resetRows();
+    },
+    colState: function() {
+      //update the field with colors
+      if (this.colState.length != 0) {
+        const nextPosition = this.rows.length - this.colState.length;
+        this.$set(
+          this.displayRows,
+          nextPosition,
+          this.colState[this.colState.length - 1]
+        );
+      }
     }
   },
   mounted() {
@@ -61,23 +72,10 @@ export default {
       for (i = 0; i < this.rows.length; i += 1) {
         displayRowsArray.push(0);
       }
-      console.log('test');
-      console.log(displayRowsArray);
       this.displayRows = displayRowsArray;
     },
     emitColAdd() {
-      if (this.checkRowNotFull()) {
-        const nextPosition = this.rows.length - this.colState.length - 1;
-        this.$set(this.displayRows, nextPosition, this.currentPlayer);
-        this.$emit('addToCol', this.col);
-      }
-    },
-    checkRowNotFull() {
-      if (this.colState.length < this.rows.length) {
-        return true;
-      } else {
-        return false;
-      }
+      this.$emit('addToCol', this.col);
     }
   }
 };
@@ -86,6 +84,7 @@ export default {
 <style lang="scss" scoped>
 .connect-col {
   display: grid;
+  cursor: pointer;
   grid-gap: 15px;
   &.hover {
     background: #aaa;

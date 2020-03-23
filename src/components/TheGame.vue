@@ -2,19 +2,28 @@
   <div class="grid">
     <connect-field
       :rows="rows"
+      :paused="paused"
       :col-count="colsCount"
       :col-states="colStates"
       @checkWinner="doWeHaveAWinner"
+    />
+    <PopupDialog
+      v-if="paused"
+      :dialog-alert="dialogAlert"
+      :game-end="true"
+      @resetGame="resetGame()"
     />
   </div>
 </template>
 
 <script>
 import ConnectField from './ConnectField.vue';
+import PopupDialog from './PopupDialog.vue';
 export default {
   name: 'TheGame', // You just lost it || Nooooooo! -TK
   components: {
-    ConnectField
+    ConnectField,
+    PopupDialog
   },
   props: {
     winCheckStrategy: {
@@ -28,13 +37,17 @@ export default {
     rowCount: 6,
     colsCount: 7,
     colStates: [],
-    rows: []
+    rows: [],
+    computerMove: 0,
+    paused: false,
+    dialogAlert: 'no one has won yet'
   }),
   created() {
     this.resetGame();
   },
   methods: {
     resetGame() {
+      this.paused = false;
       this.colStates = this.prepareColStates();
       this.rows = this.prepareRows();
     },
@@ -65,11 +78,11 @@ export default {
       );
 
       if (winner === 1) {
-        alert('player: ' + colData.player + ' won');
-        this.resetGame();
+        this.paused = true;
+        this.dialogAlert = 'Player ' + colData.player + ' won';
       } else if (winner === 3) {
-        alert('Board is full, please retry');
-        this.resetGame();
+        //alert('Board is full, please retry');
+        this.dialogAlert = 'Board is full, please retry';
       }
     }
   }
@@ -80,6 +93,7 @@ export default {
 .grid {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 2rem auto;
   padding-top: 1rem; // space for indicator
   position: relative;

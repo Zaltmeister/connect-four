@@ -33,8 +33,12 @@ export default {
   .player {
     width: 50px;
     height: 50px;
+    margin: 0 auto;
     border: 1px solid black;
     border-radius: 25px;
+    -webkit-box-shadow: inset 2px 2px 12px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 2px 2px 12px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 2px 2px 12px 0px rgba(0,0,0,0.75);
     &.human {
       background: red;
     }
