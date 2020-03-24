@@ -89,7 +89,7 @@ export default {
     async doComputerMove() {
       let timer;
       if (this.currentPlayer === 2 && this.paused === false) {
-        //only show dialog after 0.5 seconds
+        //only show dialog after 0.5 seconds to prevent dialog flashing
         timer = setTimeout(this.setComputerThinking, 500);
         const computerMove = await this.getComputerMove();
         if (computerMove === false) {
@@ -154,7 +154,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.field-container{
+.field-container {
   display: flex;
   justify-content: center;
   align-items: center;

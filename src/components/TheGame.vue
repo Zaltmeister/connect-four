@@ -11,7 +11,7 @@
       v-if="paused"
       :dialog-alert="dialogAlert"
       :game-end="true"
-      @resetGame="resetGame()"
+      @emitBtnClick="resetGame()"
     />
   </div>
 </template>
@@ -78,10 +78,12 @@ export default {
       );
 
       if (winner === 1) {
+        //handle winner
         this.paused = true;
         this.dialogAlert = 'Player ' + colData.player + ' won';
       } else if (winner === 3) {
-        //alert('Board is full, please retry');
+        //handle full board
+        this.paused = true;
         this.dialogAlert = 'Board is full, please retry';
       }
     }

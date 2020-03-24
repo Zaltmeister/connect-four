@@ -1,7 +1,7 @@
 <template>
   <div class="popup-dialog">
     <h2>{{ dialogAlert }}</h2>
-    <button v-if="gameEnd" @click="emitReset()">Play another game</button>
+    <button v-if="gameEnd" @click="emitBtnClick()">Play another game</button>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     emitReset() {
-      this.$emit('resetGame', this.col);
+      this.$emit('emitBtnClick');
     }
   }
 };

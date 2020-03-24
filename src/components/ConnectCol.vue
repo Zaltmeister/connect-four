@@ -48,6 +48,7 @@ export default {
   },
   watch: {
     rows: function() {
+      //reset visible rows if rows change
       this.resetRows();
     },
     colState: function() {
