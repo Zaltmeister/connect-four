@@ -1,3 +1,5 @@
+// credits for this solution goes to: https://github.com/ayoon212/
+
 import _ from 'lodash';
 
 const strategy = (cols, player, currentCol) => {
